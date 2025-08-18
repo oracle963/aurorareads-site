@@ -3,172 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aurora Reads — Your future, beautifully told.</title>
-  
-  <!-- Google Fonts -->
+  <title>Aurora Reads — About Us</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lato&display=swap" rel="stylesheet" />
-  
-  <style>
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-      margin: 0; padding: 0;
-    }
-    body, html {
-      height: 100%;
-      font-family: 'Lato', sans-serif;
-      background: linear-gradient(135deg, #0a043c 0%, #4b6cb7 70%);
-      color: #eee;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Aurora Gradient Overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(120deg, #67f6e7, #a26bfc, #f6a5f6);
-      opacity: 0.15;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* Star styles */
-    .star {
-      position: fixed;
-      border-radius: 50%;
-      background: white;
-      opacity: 0.8;
-      animation-name: twinkle;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
-      z-index: 0;
-    }
-    @keyframes twinkle {
-      0%, 100% {opacity: 0.8;}
-      50% {opacity: 0.3;}
-    }
-
-    /* Container */
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 480px;
-      margin: auto;
-      padding: 3rem 1rem 4rem;
-      text-align: center;
-    }
-
-    /* Hero */
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      margin-bottom: 0.2rem;
-      text-shadow: 0 0 15px #a26bfc;
-      color: #f5f5ff;
-    }
-    p.tagline {
-      font-style: italic;
-      font-size: 1.3rem;
-      color: #d6d3e1;
-      margin-bottom: 2rem;
-    }
-
-    /* About Section */
-    p.about {
-      font-size: 1rem;
-      margin-bottom: 2.5rem;
-      color: #ccc;
-      line-height: 1.5;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      background: #a26bfc;
-      color: white;
-      padding: 1rem 2.5rem;
-      margin: 0 1rem 2rem 1rem;
-      border-radius: 35px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      box-shadow: 0 0 10px #a26bfc88;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-      user-select: none;
-    }
-    .btn:hover {
-      background: #7a48ff;
-      box-shadow: 0 0 15px #7a48ffaa;
-    }
-
-    /* Footer */
-    footer {
-      font-size: 0.8rem;
-      color: #999;
-      margin-top: 3rem;
-      padding-top: 1rem;
-      border-top: 1px solid #555;
-    }
-    footer a {
-      color: #a26bfc;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2.8rem;
-      }
-      .btn {
-        padding: 0.9rem 2rem;
-        font-size: 1rem;
-        margin: 0 0.5rem 1.5rem 0.5rem;
-      }
-      .container {
-        padding: 2rem 1rem 3rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Star animations -->
+  <!-- Stars -->
   <div class="star" style="top: 15%; left: 20%; width: 3px; height: 3px; animation-duration: 4s;"></div>
   <div class="star" style="top: 35%; left: 80%; width: 2px; height: 2px; animation-duration: 5s;"></div>
   <div class="star" style="top: 55%; left: 40%; width: 4px; height: 4px; animation-duration: 6s;"></div>
   <div class="star" style="top: 75%; left: 30%; width: 2px; height: 2px; animation-duration: 7s;"></div>
-  <div class="star" style="top: 85%; left: 70%; width: 3px; height: 3px; animation-duration: 5.5s;"></div>
-  <div class="star" style="top: 25%; left: 50%; width: 2.5px; height: 2.5px; animation-duration: 4.5s;"></div>
-  <div class="star" style="top: 10%; left: 90%; width: 2px; height: 2px; animation-duration: 6.5s;"></div>
-  <div class="star" style="top: 40%; left: 60%; width: 3px; height: 3px; animation-duration: 3.5s;"></div>
 
   <div class="container">
-    <h1>Aurora Reads</h1>
+    <h1>Welcome to Aurora Reads</h1>
     <p class="tagline">Your future, beautifully told.</p>
 
+    <!-- CTA at the top -->
+    <a href="products.html" class="btn">View Horoscopes</a>
+
     <p class="about">
-      Discover your bespoke horoscope written fresh every time, powered by cosmic AI magic.  
-      One-off readings or monthly subscriptions available to guide your journey through the stars.
+      Aurora Reads was founded on the belief that the stars hold timeless wisdom.  
+      We combine ancient astrological tradition with cutting-edge AI to craft  
+      personal, bespoke horoscopes designed to inspire, guide, and entertain.  
+    </p>
+    <p class="about">
+      Whether you're looking for a quick glimpse into your day or an in-depth  
+      monthly subscription, Aurora Reads makes your journey through the cosmos  
+      beautifully simple and accessible.
     </p>
 
-    <!-- Stripe Payment Buttons (replace '#' with your actual Stripe payment links) -->
-    <a href="https://buy.stripe.com/test_6oUeV6dNXbL3d0u4NGdfG01" class="btn" target="_blank" rel="noopener noreferrer">£0.50 test basic Horoscope</a>
-    <a href="https://buy.stripe.com/test_aFacMY4di1u8fZ00ke6J201" class="btn" target="_blank" rel="noopener noreferrer">£1 Bespoke Horoscope</a>
-    <a href="https://buy.stripe.com/test_14A28k7pzaGZ1hM5RKdfG02" class="btn" target="_blank" rel="noopener noreferrer">£1.50 test Weekly bespoke Horoscopes</a>
-    <a href="https://buy.stripe.com/test_14AcMY5hm0q428a8QK6J200" class="btn" target="_blank" rel="noopener noreferrer">£10 Monthly Subscription</a>
+    <!-- CTA at the bottom -->
+    <a href="products.html" class="btn">Explore Our Horoscopes</a>
 
     <footer>
       <p>© 2025 Aurora Reads | <a href="mailto:oracle@aurorareads.co.uk">oracle@aurorareads.co.uk</a></p>
-      <p>Astrology is for entertainment purposes only. Read responsibly.</p>
     </footer>
   </div>
-
 </body>
 </html>
