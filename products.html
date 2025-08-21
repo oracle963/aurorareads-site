@@ -3,9 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aurora Reads — Horoscopes</title>
+  <title>Aurora Reads — Horoscope Plans</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lato&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .pricing-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+      margin-top: 2rem;
+    }
+    @media (min-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(162,107,252,0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #a26bfc;
+    }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .card .price {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .card ul {
+      list-style: none;
+      text-align: left;
+      margin: 1rem 0;
+      padding: 0;
+      color: #ccc;
+    }
+    .card ul li {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+    .card ul li::before {
+      content: "✔";
+      color: #6ef7a7;
+      margin-right: 0.5rem;
+    }
+    .popular {
+      border-color: gold;
+      background: rgba(255, 215, 0, 0.1);
+      position: relative;
+    }
+    .popular::before {
+      content: "★ Most Popular";
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: gold;
+      color: #000;
+      font-weight: bold;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,13 +87,54 @@
   <div class="star" style="top: 80%; left: 35%; width: 2px; height: 2px; animation-duration: 7s;"></div>
 
   <div class="container">
-    <h1>Choose Your Horoscope</h1>
-    <p class="tagline">Select a reading that suits your journey.</p>
+    <h1>Choose Your Horoscope Plan</h1>
+    <p class="tagline">Select the path that aligns with your journey through the stars ✨</p>
 
-    <a href="https://buy.stripe.com/test_6oUeV6dNXbL3d0u4NGdfG01" class="btn" target="_blank" rel="noopener noreferrer">£0.50 Test Basic Horoscope</a>
-    <a href="https://buy.stripe.com/test_aFacMY4di1u8fZ00ke6J201" class="btn" target="_blank" rel="noopener noreferrer">£1 Bespoke Horoscope</a>
-    <a href="https://buy.stripe.com/test_14A28k7pzaGZ1hM5RKdfG02" class="btn" target="_blank" rel="noopener noreferrer">£1.50 Weekly Bespoke Horoscopes</a>
-    <a href="https://buy.stripe.com/test_14AcMY5hm0q428a8QK6J200" class="btn" target="_blank" rel="noopener noreferrer">£10 Monthly Subscription</a>
+    <div class="pricing-grid">
+
+      <!-- Plan 1 -->
+      <div class="card">
+        <h3>Cosmic Glimpse</h3>
+        <p class="price">£1 <span style="font-size:0.9rem; font-weight:normal;">one-time</span></p>
+        <ul>
+          <li>One personalized horoscope</li>
+          <li>Zodiac-specific predictions</li>
+          <li>Love & relationship insights</li>
+          <li>Actionable ritual included</li>
+          <li>Beautiful email delivery</li>
+        </ul>
+        <a href="https://buy.stripe.com/test_aFacMY4di1u8fZ00ke6J201" class="btn" target="_blank">Get Cosmic Glimpse</a>
+      </div>
+
+      <!-- Plan 2 -->
+      <div class="card popular">
+        <h3>Weekly Wisdom</h3>
+        <p class="price">£4.99 <span style="font-size:0.9rem; font-weight:normal;">/ month</span></p>
+        <ul>
+          <li>Weekly horoscopes every Sunday</li>
+          <li>Extended 500+ word readings</li>
+          <li>Daily guidance throughout the week</li>
+          <li>Planetary influence analysis</li>
+          <li>Priority email delivery</li>
+        </ul>
+        <a href="https://buy.stripe.com/test_14A28k7pzaGZ1hM5RKdfG02" class="btn" target="_blank">Subscribe Weekly</a>
+      </div>
+
+      <!-- Plan 3 -->
+      <div class="card">
+        <h3>Unlimited Universe</h3>
+        <p class="price">£10 <span style="font-size:0.9rem; font-weight:normal;">/ month</span></p>
+        <ul>
+          <li>Unlimited horoscope requests</li>
+          <li>Daily & weekly readings available</li>
+          <li>Premium cosmic insights</li>
+          <li>Advanced astrological analysis</li>
+          <li>VIP customer support</li>
+        </ul>
+        <a href="https://buy.stripe.com/test_14AcMY5hm0q428a8QK6J200" class="btn" target="_blank">Join Unlimited</a>
+      </div>
+
+    </div>
 
     <footer>
       <p>© 2025 Aurora Reads | <a href="mailto:oracle@aurorareads.co.uk">oracle@aurorareads.co.uk</a></p>
