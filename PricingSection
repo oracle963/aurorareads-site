@@ -1,0 +1,166 @@
+
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Star, Crown, Zap, Check } from "lucide-react";
+import { User } from "@/entities/User";
+import { createPageUrl } from "@/utils";
+
+const plans = [
+    {
+        name: "Cosmic Glimpse",
+        price: "£1",
+        period: "one-time",
+        icon: Star,
+        gradient: "from-blue-500 to-cyan-500",
+        features: [
+            "One personalized horoscope",
+            "Zodiac-specific predictions", 
+            "Love & relationship insights",
+            "Actionable ritual included",
+            "Beautiful email delivery"
+        ],
+        popular: false
+    },
+    {
+        name: "Weekly Wisdom",
+        price: "£4.99",
+        period: "per month",
+        icon: Zap,
+        gradient: "from-purple-500 to-pink-500",
+        features: [
+            "Weekly horoscopes every Sunday",
+            "Extended 500+ word readings",
+            "Daily guidance throughout week",
+            "Planetary influence analysis",
+            "Priority email delivery"
+        ],
+        popular: true
+    },
+    {
+        name: "Unlimited Universe",
+        price: "£10",
+        period: "per month", 
+        icon: Crown,
+        gradient: "from-yellow-400 to-orange-500",
+        features: [
+            "Unlimited horoscope requests",
+            "Daily & weekly readings available",
+            "Premium cosmic insights",
+            "Advanced astrological analysis",
+            "VIP customer support"
+        ],
+        popular: false
+    }
+];
+
+export default function PricingSection({ user }) {
+    return (
+        <section className="py-20 px-4 bg-black/10">
+            <div className="max-w-6xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">
+                        Choose Your
+                        <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                            {" "}Cosmic Path
+                        </span>
+                    </h2>
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto font-light">
+                        Select the perfect plan to unlock your celestial destiny
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {plans.map((plan, index) => (
+                        <motion.div
+                            key={plan.name}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="relative group"
+                        >
+                            {plan.popular && (
+                                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                                    <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-purple-950 px-4 py-1 font-medium">
+                                        Most Popular
+                                    </Badge>
+                                </div>
+                            )}
+                            
+                            <Card className={`h-full border-2 transition-all duration-300 ${
+                                plan.popular 
+                                    ? "border-yellow-500/50 bg-gradient-to-b from-yellow-900/10 to-black/20" 
+                                    : "border-purple-800/30 bg-black/20"
+                            } backdrop-blur-sm group-hover:border-purple-600/50`}>
+                                <CardHeader className="text-center pb-8">
+                                    <div className={`w-16 h-16 bg-gradient-to-r ${plan.gradient} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                                        <plan.icon className="w-8 h-8 text-white" />
+                                    </div>
+                                    <CardTitle className="text-xl text-white mb-2">
+                                        {plan.name}
+                                    </CardTitle>
+                                    <div className="flex items-baseline justify-center gap-1">
+                                        <span className="text-4xl font-bold text-white">
+                                            {plan.price}
+                                        </span>
+                                        <span className="text-gray-400">
+                                            {plan.period}
+                                        </span>
+                                    </div>
+                                </CardHeader>
+                                
+                                <CardContent className="space-y-6">
+                                    <ul className="space-y-4">
+                                        {plan.features.map((feature, i) => (
+                                            <li key={i} className="flex items-center gap-3 text-gray-300">
+                                                <Check className="w-4 h-4 text-green-400 flex-shrink-0" />
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    
+                                    <Button 
+                                        onClick={() => {
+                                            if (user) {
+                                                window.location.href = createPageUrl("Dashboard");
+                                            } else {
+                                                User.login();
+                                            }
+                                        }}
+                                        className={`w-full py-6 text-lg font-medium rounded-xl transition-all duration-300 ${
+                                            plan.popular
+                                                ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-purple-950 hover:from-yellow-500 hover:to-yellow-700"
+                                                : "bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800"
+                                        }`}
+                                    >
+                                        {user ? "Get Started" : "Sign Up Now"}
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </div>
+                
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="text-center mt-12"
+                >
+                    <p className="text-gray-400 text-sm">
+                        Note: Payment processing will be available once backend functions are enabled.
+                        <br />
+                        Currently, you can sign up and request horoscopes manually.
+                    </p>
+                </motion.div>
+            </div>
+        </section>
+    );
+}
