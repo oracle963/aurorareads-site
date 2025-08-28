@@ -1,0 +1,82 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Heart, Zap, Crown, Star } from "lucide-react";
+
+const features = [
+    {
+        icon: Star,
+        title: "Zodiac-Accurate Predictions",
+        description: "Each reading is precisely calculated based on your birth details and current planetary alignments.",
+        gradient: "from-purple-500 to-pink-500"
+    },
+    {
+        icon: Heart,
+        title: "Love & Relationship Guidance", 
+        description: "Separate insights for singles and couples, helping you navigate matters of the heart.",
+        gradient: "from-pink-500 to-red-500"
+    },
+    {
+        icon: Zap,
+        title: "Actionable Rituals",
+        description: "Every reading includes a meaningful ritual or action to enhance your cosmic energy.",
+        gradient: "from-yellow-400 to-orange-500"
+    },
+    {
+        icon: Crown,
+        title: "Poetic Blessings",
+        description: "Each horoscope closes with a beautiful, personalized blessing for your journey ahead.",
+        gradient: "from-blue-500 to-cyan-500"
+    }
+];
+
+export default function FeaturesSection() {
+    return (
+        <section className="py-20 px-4">
+            <div className="max-w-6xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">
+                        Why Choose 
+                        <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                            {" "}Aurora Reads
+                        </span>
+                    </h2>
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto font-light">
+                        Our AI combines the precision of astronomical data with the wisdom of ancient traditions
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {features.map((feature, index) => (
+                        <motion.div
+                            key={feature.title}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="group"
+                        >
+                            <Card className="bg-black/20 border-purple-800/30 backdrop-blur-sm hover:bg-black/30 transition-all duration-300 group-hover:border-purple-600/50">
+                                <CardContent className="p-8">
+                                    <div className={`w-12 h-12 bg-gradient-to-r ${feature.gradient} rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                        <feature.icon className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-medium text-white mb-4">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="text-gray-300 leading-relaxed">
+                                        {feature.description}
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
