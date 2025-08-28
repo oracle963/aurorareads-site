@@ -1,0 +1,102 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Sparkles, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+import { User } from "@/entities/User";
+
+export default function HeroSection({ user }) {
+    return (
+        <section className="relative py-24 px-4">
+            <div className="max-w-4xl mx-auto text-center">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-8"
+                >
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-900/20 border border-purple-500/30 rounded-full mb-8">
+                        <Star className="w-4 h-4 text-yellow-400" />
+                        <span className="text-sm text-purple-200">AI-Powered Cosmic Insights</span>
+                    </div>
+                    
+                    <h1 className="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight">
+                        Your
+                        <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                            {" "}Cosmic{" "}
+                        </span>
+                        Destiny Awaits
+                    </h1>
+                    
+                    <p className="text-xl md:text-2xl text-gray-300 mb-8 font-light leading-relaxed">
+                        Unlock the mysteries of your future with personalized horoscopes 
+                        crafted by advanced AI and delivered straight to your soul.
+                    </p>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                >
+                    {user ? (
+                        <Link to={createPageUrl("Dashboard")}>
+                            <Button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-purple-950 hover:from-yellow-500 hover:to-yellow-700 px-8 py-6 text-lg font-medium rounded-xl">
+                                <Sparkles className="w-5 h-5 mr-2" />
+                                View Your Readings
+                            </Button>
+                        </Link>
+                    ) : (
+                        <Button 
+                            onClick={() => User.login()}
+                            className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-purple-950 hover:from-yellow-500 hover:to-yellow-700 px-8 py-6 text-lg font-medium rounded-xl"
+                        >
+                            <Sparkles className="w-5 h-5 mr-2" />
+                            Begin Your Journey
+                        </Button>
+                    )}
+                    
+                    <Button 
+                        variant="outline" 
+                        className="border-purple-500/30 text-purple-200 hover:bg-purple-900/30 px-8 py-6 text-lg rounded-xl"
+                    >
+                        Learn More
+                    </Button>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.6 }}
+                    className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+                >
+                    <div className="flex flex-col items-center">
+                        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-4">
+                            <Star className="w-6 h-6 text-white" />
+                        </div>
+                        <h3 className="text-lg font-medium text-white mb-2">Personalized</h3>
+                        <p className="text-gray-400">Tailored to your unique cosmic signature</p>
+                    </div>
+                    
+                    <div className="flex flex-col items-center">
+                        <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mb-4">
+                            <Sparkles className="w-6 h-6 text-purple-950" />
+                        </div>
+                        <h3 className="text-lg font-medium text-white mb-2">AI-Enhanced</h3>
+                        <p className="text-gray-400">Advanced algorithms meet ancient wisdom</p>
+                    </div>
+                    
+                    <div className="flex flex-col items-center">
+                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-4">
+                            <span className="text-white text-lg">✉</span>
+                        </div>
+                        <h3 className="text-lg font-medium text-white mb-2">Delivered Daily</h3>
+                        <p className="text-gray-400">Beautiful emails that brighten your inbox</p>
+                    </div>
+                </motion.div>
+            </div>
+        </section>
+    );
+}
