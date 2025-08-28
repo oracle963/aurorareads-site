@@ -1,0 +1,46 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Sparkles, Star, Zap, Mail, Crown } from "lucide-react";
+import { User } from "@/entities/User";
+import { createPageUrl } from "@/utils";
+import { Link } from "react-router-dom";
+
+import HeroSection from "../components/home/HeroSection";
+import PricingSection from "../components/home/PricingSection";
+import FeaturesSection from "../components/home/FeaturesSection";
+
+export default function HomePage() {
+    const [user, setUser] = React.useState(null);
+
+    React.useEffect(() => {
+        checkAuth();
+    }, []);
+
+    const checkAuth = async () => {
+        try {
+            const currentUser = await User.me();
+            setUser(currentUser);
+        } catch (error) {
+            setUser(null);
+        }
+    };
+
+    return (
+        <div className="min-h-screen">
+            <HeroSection user={user} />
+            <FeaturesSection />
+            <PricingSection user={user} />
+            
+            {/* Footer */}
+            <footer className="border-t border-purple-800/30 bg-black/20 backdrop-blur-sm py-8">
+                <div className="max-w-7xl mx-auto px-4 text-center">
+                    <p className="text-gray-400 text-sm">
+                        © 2025 Aurora Reads. Illuminating your cosmic journey.
+                    </p>
+                </div>
+            </footer>
+        </div>
+    );
+}
