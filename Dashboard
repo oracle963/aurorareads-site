@@ -1,0 +1,101 @@
+import React, { useState, useEffect } from "react";
+import { User } from "@/entities/User";
+import { UserProfile } from "@/entities/UserProfile";
+import { Horoscope } from "@/entities/Horoscope";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
+
+import WelcomeSection from "../components/dashboard/WelcomeSection";
+import ProfileSetup from "../components/dashboard/ProfileSetup";
+import HoroscopeHistory from "../components/dashboard/HoroscopeHistory";
+import RequestHoroscope from "../components/dashboard/RequestHoroscope";
+
+export default function DashboardPage() {
+    const [user, setUser] = useState(null);
+    const [profile, setProfile] = useState(null);
+    const [horoscopes, setHoroscopes] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        loadUserData();
+    }, []);
+
+    const loadUserData = async () => {
+        try {
+            const currentUser = await User.me();
+            setUser(currentUser);
+
+            // Try to get user profile
+            const profiles = await UserProfile.filter({ created_by: currentUser.email });
+            if (profiles.length > 0) {
+                setProfile(profiles[0]);
+                
+                // Load horoscopes
+                const userHoroscopes = await Horoscope.filter({ user_email: currentUser.email }, "-created_date");
+                setHoroscopes(userHoroscopes);
+            }
+        } catch (error) {
+            console.error("Error loading user data:", error);
+        }
+        setLoading(false);
+    };
+
+    const handleProfileComplete = (newProfile) => {
+        setProfile(newProfile);
+        loadUserData(); // Reload to get horoscopes
+    };
+
+    const handleNewHoroscope = () => {
+        loadUserData(); // Reload to get latest horoscopes
+    };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="flex items-center gap-3 text-white"
+                >
+                    <Sparkles className="w-6 h-6 animate-pulse" />
+                    <span className="text-lg">Loading your cosmic profile...</span>
+                </motion.div>
+            </div>
+        );
+    }
+
+    if (!user) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center text-white">
+                    <h2 className="text-2xl mb-4">Please sign in to access your dashboard</h2>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen py-8 px-4">
+            <div className="max-w-6xl mx-auto">
+                <WelcomeSection user={user} profile={profile} />
+                
+                {!profile ? (
+                    <ProfileSetup user={user} onComplete={handleProfileComplete} />
+                ) : (
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div className="lg:col-span-2">
+                            <HoroscopeHistory horoscopes={horoscopes} />
+                        </div>
+                        <div>
+                            <RequestHoroscope 
+                                user={user} 
+                                profile={profile} 
+                                onNewHoroscope={handleNewHoroscope}
+                            />
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
