@@ -1,11 +1,36 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { createPageUrl } from "@/utils";
-import { Sparkles, User, Home, Mail } from "lucide-react";
-import { User as UserEntity } from "@/entities/User";
-import { Button } from "@/components/ui/button";
+// Main layout functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize navigation
+    initializeNavigation();
+    // Initialize star animation
+    createStarField();
+    // Initialize theme
+    initializeTheme();
+});
 
-export default function Layout({ children, currentPageName }) {
+function initializeNavigation() {
+    // Create navigation if it doesn't exist
+    if (!document.querySelector('nav')) {
+        const nav = document.createElement('nav');
+        nav.className = 'main-nav';
+        nav.innerHTML = `
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">
+                    <span class="sparkle">✨</span>
+                    <span>Aurora Reads</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Horoscopes</a>
+                    <div class="user-section">
+                        <button class="login-btn">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertBefore(nav, document.body.firstChild);
+    }
+}
     const location = useLocation();
     const [user, setUser] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
