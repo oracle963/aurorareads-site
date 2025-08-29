@@ -116,6 +116,10 @@
       transform: scale(1.05);
     }
     
+    .card.popular:hover {
+      transform: translateY(-5px) scale(1.05); /* Keep the scale but add lift effect */
+    }
+    
     .popular::before {
       content: "★ Most Popular";
       position: absolute;
@@ -128,6 +132,7 @@
       padding: 0.4rem 1rem;
       border-radius: 20px;
       font-size: 0.8rem;
+      z-index: 1; /* Ensure badge stays on top */
     }
     
     .features-list {
@@ -136,6 +141,42 @@
     
     .plan-cta {
       margin-top: 2rem;
+    }
+    
+    .plan-cta .btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #a26bfc 0%, #7a48ff 100%);
+    }
+    
+    .plan-cta .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(162, 107, 252, 0.4);
+    }
+    
+    .plan-cta .btn:active {
+      transform: translateY(0);
+    }
+    
+    .plan-cta .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+      );
+      transition: left 0.5s ease;
+    }
+    
+    .plan-cta .btn:hover::before {
+      left: 100%;
     }
     
     @media (max-width: 768px) {
@@ -173,7 +214,9 @@
             <li>Beautiful email delivery</li>
           </ul>
           <div class="plan-cta">
-            <a href="https://buy.stripe.com/test_aFacMY4di1u8fZ00ke6J201" class="btn" target="_blank">Get Your Reading</a>
+            <button class="btn" data-plan="cosmic-glimpse">
+              <span>Get Your Reading</span>
+            </button>
           </div>
         </div>
 
@@ -189,7 +232,9 @@
             <li>Priority email delivery</li>
           </ul>
           <div class="plan-cta">
-            <a href="https://buy.stripe.com/test_14A28k7pzaGZ1hM5RKdfG02" class="btn" target="_blank">Start Your Journey</a>
+            <button class="btn" data-plan="weekly-wisdom">
+              <span>Start Your Journey</span>
+            </button>
           </div>
         </div>
 
@@ -205,7 +250,9 @@
             <li>VIP customer support</li>
           </ul>
           <div class="plan-cta">
-            <a href="https://buy.stripe.com/test_14AcMY5hm0q428a8QK6J200" class="btn" target="_blank">Unlock Everything</a>
+            <button class="btn" data-plan="unlimited-universe">
+              <span>Unlock Everything</span>
+            </button>
           </div>
         </div>
       </div>
@@ -234,5 +281,6 @@
   
   <script src="js/main.js"></script>
   <script src="layout.js"></script>
+  <script src="js/purchase.js"></script>
 </body>
 </html>
