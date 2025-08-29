@@ -111,10 +111,16 @@ body::before {
 .container {
   position: relative;
   z-index: 1;
-  max-width: 600px;
+  max-width: 1200px; /* Increased from 600px for wider content */
   margin: auto;
   padding: 3rem 1rem 4rem;
   text-align: center;
+}
+
+/* Narrow container for text-heavy sections */
+.container-narrow {
+  max-width: 600px;
+  margin: auto;
 }
 
 /* Hero */
@@ -178,32 +184,42 @@ footer a:hover {
 
 /* Sections */
 section {
-  padding: 5rem 0;
+  padding: 3rem 0;  /* Reduced from 5rem to 3rem */
   position: relative;
   z-index: 1;
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: 90vh;  /* Reduced from 100vh to 90vh */
   display: flex;
   align-items: center;
   text-align: center;
   padding-top: 4rem;
 }
 
+#features {
+  background: rgba(10, 4, 60, 0.7);  /* Darker background for features section */
+  border-top: 1px solid rgba(162, 107, 252, 0.2);
+  border-bottom: 1px solid rgba(162, 107, 252, 0.2);
+  margin-top: -2rem;  /* Pull section up closer to hero */
+  padding-top: 4rem;  /* Add some padding at the top */
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 2rem;  /* Reduced from 3rem */
+  padding: 0 2rem;   /* Added horizontal padding */
 }
 
 .feature-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);  /* Slightly darker background */
   padding: 2rem;
   border-radius: 20px;
   text-align: center;
   transition: transform 0.3s ease;
+  border: 1px solid rgba(162, 107, 252, 0.1);  /* Added subtle border */
 }
 
 .feature-card:hover {
